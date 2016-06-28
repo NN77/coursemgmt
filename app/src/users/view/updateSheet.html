@@ -1,0 +1,40 @@
+<md-bottom-sheet class="md-list md-has-header">
+  <md-subheader>
+      Edit <span class="name">{{ vm.user.first_name }} {{ vm.user.last_name }}</span>:
+  </md-subheader>
+  <form name="userForm">
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>First Name</label>
+          <input ng-if="!vm.mockup" md-maxlength="30" required name="first_name" placeholder="{{ vm.user.first_name }}" ng-model="vm.newUser.first_name" />
+          <input ng-if="vm.mockup" md-maxlength="30" required name="first_name" ng-model="vm.user.first_name" />
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm>
+        </div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Last Name</label>
+          <input ng-if="!vm.mockup" md-maxlength="30" required name="last_name" placeholder="{{ vm.user.last_name }}" ng-model="vm.newUser.last_name" />
+          <input ng-if="vm.mockup" md-maxlength="30" required name="last_name" ng-model="vm.user.last_name" />
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Gender</label>
+          <input ng-if="!vm.mockup" md-maxlength="30" required name="gender" placeholder="{{ vm.user.gender }}" ng-model="vm.newUser.gender" />
+          <input ng-if="vm.mockup" md-maxlength="30" required name="gender" ng-model="vm.user.gender" />
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm>
+        </div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Id</label>
+          <input ng-if="!vm.mockup" name="id" required ng-model="vm.newUser.id" placeholder="{{ vm.newUser.id }}" ng-pattern="/^[1-9]{1}$/" />
+          <input ng-if="vm.mockup" name="id" required ng-model="vm.user.id" ng-pattern="/^[1-9]{1}$/" />
+          <div class="hint">[1-9]</div>
+        </md-input-container>
+      </div>
+      <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
+        <md-button class="md-primary md-raised" ng-click="vm.save(vm.newUser)">Save</md-button>
+        <md-button class="md-primary md-raised" ng-click="vm.cancel()">Cancel</md-button>
+      </div>
+    </form>
+</md-bottom-sheet>
