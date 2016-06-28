@@ -14,6 +14,7 @@
     self.users        = [ ];
     self.selectUser   = selectUser;
     self.updateUser   = updateUser;
+    self.createUser   = createUser;
     self.mockup       = true;
 
     userService
@@ -27,8 +28,11 @@
           });
 
           $rootScope.$on('updateUser', function(event, selectedUser) {
-            console.log(selectedUser);
             updateUser(selectedUser);
+          });
+
+          $rootScope.$on('createUser', function(event, selectedUser) {
+            createUser(selectedUser);
           });
 
     function selectUser ( user ) {
@@ -45,7 +49,7 @@
           parent        : angular.element(document.getElementById('content'))
         });
 
-        function UpdateController( $mdBottomShee ) {
+        function UpdateController($mdBottomSheet) {
           this.mockup = true; // needed to simulate remote data service call(s) like POST or PUT
           this.user = selectedUser;
           this.newUser = {};
@@ -59,6 +63,29 @@
             $mdBottomSheet.hide();
           }
         }
+    }
+
+    function createUser(selectedUser) {
+      $mdBottomSheet.show({
+        controllerAs  : "um",
+        templateUrl   : './src/users/view/createSheet.html',
+        controller    : ['$mdBottomSheet', CreateController],
+        parent        : angular.element(document.getElementById('content'))
+      });
+
+      function CreateController($mdBottomShee) {
+        this.create = function(newUser) {
+          if(newUser) {
+            $log.debug(newUser);
+            userService
+                  .createUser(newUser);
+            $mdBottomSheet.hide();
+          }
+          else {
+            $log.debug('Fill the form!');
+          }
+        };
+      }
     }
   }
 

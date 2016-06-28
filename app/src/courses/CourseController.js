@@ -10,10 +10,11 @@
   function CourseController( courseService, $rootScope, $mdSidenav, $mdBottomSheet, $timeout, $log ) {
     var self = this;
 
-    self.selected     = null;
+    self.selected       = null;
     self.courses        = [ ];
     self.selectCourse   = selectCourse;
-    self.mockup       = true;
+    self.createCourse   = createCourse;
+    self.mockup         = true;
 
     courseService
           .loadAllCourses()
@@ -31,6 +32,10 @@
             editCourseUsers(selectedCourse);
           });
 
+          $rootScope.$on('createCourse', function(event, selectedCourse) {
+            createCourse(selectedCourse);
+          });
+
     function selectCourse ( course ) {
       self.selected = angular.isNumber(course) ? $scope.courses[course] : course;
       $rootScope.$broadcast('courses', self.selected);
@@ -39,18 +44,20 @@
     function createCourse(selectedCourse) {
 
         $mdBottomSheet.show({
-          controllerAs  : "vm",
-          templateUrl   : './src/courses/view/updateSheet.html',
-          controller    : [ '$mdBottomSheet', UpdateController],
+          controllerAs  : "cm",
+          templateUrl   : './src/courses/view/createSheet.html',
+          controller    : [ '$mdBottomSheet', CreateController],
           parent        : angular.element(document.getElementById('content'))
         });
 
-        function UpdateController( $mdBottomShee ) {
-          this.course = selectedCourse;
-          this.register = function(userId) {
-            $log.debug(userId);
+        function CreateController($mdBottomSheet) {
+          this.create = function(newCourse) {
+            var begin = moment(newCourse.begin).format('DDMMYYYY');
+            var end   = moment(newCourse.end).format('DDMMYYYY');
+            var parsed = {begin: begin, end: end, title: newCourse.title, candidate_limit: newCourse.candidate_limit };
+            $log.debug(parsed);
             courseService
-                  .addCourse(selectedCourse.id, userId);
+                  .createCourse(parsed);
             $mdBottomSheet.hide();
           };
           this.cancel = function() {
@@ -63,7 +70,7 @@
       $mdBottomSheet.show({
         controllerAs  : "vm",
         templateUrl   : './src/courses/view/updateSheet.html',
-        controller    : [ '$mdBottomSheet', UpdateController],
+        controller    : ['$mdBottomSheet', UpdateController],
         parent        : angular.element(document.getElementById('content'))
       });
 

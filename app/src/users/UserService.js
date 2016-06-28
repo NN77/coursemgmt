@@ -29,6 +29,18 @@
                   return $q.reject(errResponse);
               }
           );
+      },
+      createUser : function(user) {
+        return $http.post('http://private-anon-7a870b364-coursemgmt.apiary-mock.com/users', user)
+          .then(
+              function(){
+                  console.log('User created successfully');
+              },
+              function(errResponse){
+                  console.error('Error while creating user');
+                  return $q.reject(errResponse);
+              }
+          );
       }
     };
   }

@@ -19,26 +19,20 @@ md-toolbar h3 {
   font-weight: 500;
 }
 
-md-list-item {
-  > button {
-    width:100%;
-    text-align:left !important;
-  }
+md-list-item > button {
+  width:100%;
+  text-align:left !important;
 }
 
-md-list {
-  .md-button {
-    &.selected {
-        color: #03a9f4;
-    }
-  }
+md-list .md-button {}
+
+md-list .md-button.selected {
+  color: #03a9f4;
 }
 
-md-sidenav {
-  md-list {
-    padding: 0px 0px 8px 0px;
-    min-height: 250px;
-  }
+md-sidenav md-list {
+  padding: 0px 0px 8px 0px;
+  min-height: 250px;
 }
 
 #content {
@@ -46,36 +40,38 @@ md-sidenav {
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 5px;
-  img {
-    display: block;
-    height: auto;
-    max-width: 500px;
-  }
-  md-icon.avatar {
-    margin-top: 10px;
-    width: 128px;
-    height: 128px;
-  }
-  md-icon.avatar_mini {
-    margin-top: 10px;
-    width: 64px;
-    height: 64px;
-  }
-  .md-button.share {
-    > md-icon {
-      fill:black;
-      width:36px;
-      height:36px;
-    }
-  }
-  .md-button.share:active {
-    > md-icon {
-      background-color: #dadada;
-      border-radius: 75%;
-      padding:4px;
-      transition: all 100ms ease-out 30ms;
-    }
-  }
+}
+
+#content img {
+  display: block;
+  height: auto;
+  max-width: 500px;
+}
+
+#content md-icon.avatar {
+  margin-top: 10px;
+  width: 128px;
+  height: 128px;
+}
+
+#content md-icon.avatar_mini {
+  margin-top: 10px;
+  width: 64px;
+  height: 64px;
+}
+
+#content .md-button.share > md-icon {
+  fill:black;
+  width:36px;
+  height:36px;
+}
+
+#content .md-button.share:active > md-icon {
+  background-color: #dadada;
+  border-radius: 75%;
+  padding:4px;
+  -webkit-transition: all 100ms ease-out 30ms;
+  transition: all 100ms ease-out 30ms;
 }
 
 md-button.menuBtn > md-icon {
@@ -128,6 +124,7 @@ span.name {
   bottom: 7px;
   font-size: 12px;
   line-height: 14px;
+  -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
   transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
   color: grey;
 }

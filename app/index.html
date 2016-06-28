@@ -10,7 +10,7 @@
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="../node_modules/angular-material/angular-material.css"/>
-    <link rel="stylesheet" href="assets/app.css"/>
+    <link rel="stylesheet" href="app.css"/>
 
     <style type="text/css">
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -39,6 +39,7 @@
                 </md-button>
             </md-list-item>
           </md-list>
+          <md-button  ng-click="ac.createCourse()" class="md-raised md-warn">Create Course</md-button>
           <md-list ng-controller="UserController as ul">
             <md-subheader>Users</md-subheader>
             <md-list-item ng-repeat="it in ul.users">
@@ -48,7 +49,7 @@
                 </md-button>
             </md-list-item>
           </md-list>
-          <md-button class="md-raised md-warn">Create User</md-button>
+          <md-button  ng-click="ac.createUser()" class="md-raised md-accent">Create User</md-button>
         </md-sidenav>
 
         <md-content id="content" flex>
@@ -107,6 +108,7 @@
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
     <script src="../node_modules/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
+    <script src="../node_modules/moment/moment.js"></script>
 
     <script src="./src/courses/Courses.js"></script>
     <script src="./src/courses/CourseController.js"></script>
@@ -120,7 +122,7 @@
 
           angular
               .module('coursemgmtApp', ['ngMaterial', 'courses', 'users'])
-              .config(function($mdThemingProvider, $mdIconProvider){
+              .config(function($mdThemingProvider, $mdIconProvider, $mdDateLocaleProvider){
 
                   $mdIconProvider
                       .defaultIconSet("./assets/svg/avatars.svg", 128)
@@ -135,6 +137,9 @@
                       $mdThemingProvider.theme('default')
                           .primaryPalette('blue-grey')
                           .accentPalette('red');
+                          $mdDateLocaleProvider.formatDate = function(date) {
+                            return date ? moment(date).format('DD-MM-YYYY') : '';
+                          };
 
               })
               .controller('AppController', [
@@ -150,7 +155,9 @@
                 self.courseCard       = true;
                 self.userCard         = false;
                 self.updateUser       = updateUser;
+                self.createUser       = createUser;
                 self.editCourseUsers  = editCourseUsers;
+                self.createCourse       = createCourse;
 
                 $rootScope.$on('courses', function(event, courses) {
                   self.selected = courses;
@@ -174,6 +181,14 @@
 
                 function updateUser(selectedUser) {
                   $rootScope.$broadcast('updateUser', selectedUser);
+                }
+
+                function createUser(selectedUser) {
+                  $rootScope.$broadcast('createUser', selectedUser);
+                }
+
+                function createCourse(selectedCourse) {
+                  $rootScope.$broadcast('createCourse', selectedCourse);
                 }
               }
     </script>

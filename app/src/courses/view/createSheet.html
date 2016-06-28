@@ -1,0 +1,36 @@
+<md-bottom-sheet class="md-list md-has-header">
+  <md-subheader>
+      Create new User:
+  </md-subheader>
+  <form name="courseForm">
+      <div layout-gt-sm="row">
+        <div class="md-block" flex-gt-sm>
+          <label>Begin date</label>
+          <md-datepicker ng-model="cm.course.begin"></md-datepicker>
+        </div>
+        <div flex="5" hide-xs hide-sm>
+        </div>
+        <div class="md-block" flex-gt-sm>
+          <label>End date</label>
+          <md-datepicker ng-model="cm.course.end"></md-datepicker>
+        </div>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Title</label>
+          <input md-maxlength="30" required name="title" ng-model="cm.course.title" />
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm>
+        </div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Candidate limit</label>
+          <input name="id" required ng-model="cm.course.candidate_limit" ng-pattern="/^[1-5]{1}$/" />
+          <div class="hint">[1-5]</div>
+        </md-input-container>
+      </div>
+      <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center">
+        <md-button class="md-primary md-raised" ng-click="cm.create(cm.course)">Create</md-button>
+        <md-button class="md-primary md-raised" ng-click="cm.cancel()">Cancel</md-button>
+      </div>
+    </form>
+</md-bottom-sheet>
