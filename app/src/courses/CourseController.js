@@ -58,6 +58,8 @@
             $log.debug(parsed);
             courseService
                   .createCourse(parsed);
+            //mockup
+            self.courses = self.courses.concat(parsed);
             $mdBottomSheet.hide();
           };
           this.cancel = function() {

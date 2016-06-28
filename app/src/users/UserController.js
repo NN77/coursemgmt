@@ -79,6 +79,8 @@
             $log.debug(newUser);
             userService
                   .createUser(newUser);
+            //mockup
+            self.users = self.users.concat(newUser);
             $mdBottomSheet.hide();
           }
           else {
