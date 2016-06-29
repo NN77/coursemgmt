@@ -87,6 +87,9 @@
             $log.debug('Fill the form!');
           }
         };
+        this.cancel = function() {
+          $mdBottomSheet.hide();
+        }
       }
     }
   }

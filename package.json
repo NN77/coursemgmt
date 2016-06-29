@@ -28,6 +28,7 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-postcss": "^6.1.1",
+    "gulp-pug": "^3.0.3",
     "gulp-shell": "^0.5.2",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
@@ -37,7 +38,6 @@
     "karma-junit-reporter": "^0.4.1",
     "postcss-cssnext": "^2.6.0",
     "precss": "^1.4.0",
-    "pug": "^2.0.0-beta3",
     "run-sequence": "^1.2.1"
   },
   "dependencies": {

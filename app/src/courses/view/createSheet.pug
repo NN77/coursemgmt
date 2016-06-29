@@ -1,0 +1,24 @@
+md-bottom-sheet.md-list.md-has-header
+  md-subheader
+    | Create new User:
+  form(name='courseForm')
+    div(layout-gt-sm='row')
+      .md-block(flex-gt-sm='')
+        label Begin date
+        md-datepicker(ng-model='cm.course.begin')
+      div(flex='5', hide-xs='', hide-sm='')
+      .md-block(flex-gt-sm='')
+        label End date
+        md-datepicker(ng-model='cm.course.end')
+    div(layout-gt-sm='row')
+      md-input-container.md-block(flex-gt-sm='')
+        label Title
+        input(md-maxlength='30', required='', name='title', ng-model='cm.course.title')
+      div(flex='5', hide-xs='', hide-sm='')
+      md-input-container.md-block(flex-gt-sm='')
+        label Candidate limit
+        input(name='id', required='', ng-model='cm.course.candidate_limit', ng-pattern='/^[1-5]{1}$/')
+        .hint [1-5]
+    .bottom-sheet-demo.inset(layout='row', layout-sm='column', layout-align='center')
+      md-button.md-primary.md-raised(ng-click='cm.create(cm.course)') Create
+      md-button.md-primary.md-raised(ng-click='cm.cancel()') Cancel

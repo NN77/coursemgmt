@@ -1,0 +1,24 @@
+md-bottom-sheet.md-list.md-has-header
+  md-subheader
+    | Create new User:
+  form(name='userForm')
+    div(layout-gt-sm='row')
+      md-input-container.md-block(flex-gt-sm='')
+        label First Name
+        input(md-maxlength='30', required='', name='first_name', ng-model='um.user.first_name')
+      div(flex='5', hide-xs='', hide-sm='')
+      md-input-container.md-block(flex-gt-sm='')
+        label Last Name
+        input(md-maxlength='30', required='', name='last_name', ng-model='um.user.last_name')
+    div(layout-gt-sm='row')
+      md-input-container.md-block(flex-gt-sm='')
+        label Gender
+        input(md-maxlength='30', required='', name='gender', ng-model='um.user.gender')
+      div(flex='5', hide-xs='', hide-sm='')
+      md-input-container.md-block(flex-gt-sm='')
+        label Id
+        input(name='id', required='', ng-model='um.user.id', ng-pattern='/^[1-9]{1}$/')
+        .hint [1-9]
+    .bottom-sheet-demo.inset(layout='row', layout-sm='column', layout-align='center')
+      md-button.md-primary.md-raised(ng-click='um.create(um.user)') Create
+      md-button.md-primary.md-raised(ng-click='um.cancel()') Cancel

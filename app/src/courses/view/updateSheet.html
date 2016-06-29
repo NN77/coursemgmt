@@ -1,13 +1,1 @@
-<md-bottom-sheet class="md-list md-has-header">
-  <md-subheader>
-      Edit <span class="name">{{ vm.course.title }}</span>:
-  </md-subheader>
-  <md-list>
-    <md-list-item ng-repeat="u in vm.course.candidates" ng-click="register(u, $event)" class="noright">
-      <md-icon md-svg-icon="{{u.avatar}}" class="avatar avatar_mini"></md-icon>
-      <p>{{ u.first_name }}</p>
-      <md-button ng-click="vm.register(u.id)" class="md-secondary">Register</md-button>
-      <md-button ng-click="vm.remove(u.id)" class="md-secondary">Remove</md-button>
-    </md-list-item>
-  </md-list>
-</md-bottom-sheet>
+<md-bottom-sheet class="md-list md-has-header"><md-subheader>Edit<span class="name">{{ vm.course.title }}</span>:</md-subheader><md-list><md-list-item class="noright" ng-repeat="u in vm.course.candidates" ng-click="register(u, $event)"><md-icon class="avatar avatar_mini" md-svg-icon="{{u.avatar}}"></md-icon><p>{{ u.first_name }}</p><md-button class="md-secondary" ng-click="vm.register(u.id)">Register</md-button><md-button class="md-secondary" ng-click="vm.remove(u.id)">Remove</md-button></md-list-item></md-list></md-bottom-sheet>

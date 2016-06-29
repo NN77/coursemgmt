@@ -1,0 +1,30 @@
+md-bottom-sheet.md-list.md-has-header
+  md-subheader
+    | Edit
+    span.name {{ vm.user.first_name }} {{ vm.user.last_name }}
+    | :
+  form(name='userForm')
+    div(layout-gt-sm='row')
+      md-input-container.md-block(flex-gt-sm='')
+        label First Name
+        input(ng-if='!vm.mockup', md-maxlength='30', required='', name='first_name', placeholder='{{ vm.user.first_name }}', ng-model='vm.newUser.first_name')
+        input(ng-if='vm.mockup', md-maxlength='30', required='', name='first_name', ng-model='vm.user.first_name')
+      div(flex='5', hide-xs='', hide-sm='')
+      md-input-container.md-block(flex-gt-sm='')
+        label Last Name
+        input(ng-if='!vm.mockup', md-maxlength='30', required='', name='last_name', placeholder='{{ vm.user.last_name }}', ng-model='vm.newUser.last_name')
+        input(ng-if='vm.mockup', md-maxlength='30', required='', name='last_name', ng-model='vm.user.last_name')
+    div(layout-gt-sm='row')
+      md-input-container.md-block(flex-gt-sm='')
+        label Gender
+        input(ng-if='!vm.mockup', md-maxlength='30', required='', name='gender', placeholder='{{ vm.user.gender }}', ng-model='vm.newUser.gender')
+        input(ng-if='vm.mockup', md-maxlength='30', required='', name='gender', ng-model='vm.user.gender')
+      div(flex='5', hide-xs='', hide-sm='')
+      md-input-container.md-block(flex-gt-sm='')
+        label Id
+        input(ng-if='!vm.mockup', name='id', required='', ng-model='vm.newUser.id', placeholder='{{ vm.newUser.id }}', ng-pattern='/^[1-9]{1}$/')
+        input(ng-if='vm.mockup', name='id', required='', ng-model='vm.user.id', ng-pattern='/^[1-9]{1}$/')
+        .hint [1-9]
+    .bottom-sheet-demo.inset(layout='row', layout-sm='column', layout-align='center')
+      md-button.md-primary.md-raised(ng-click='vm.save(vm.newUser)') Save
+      md-button.md-primary.md-raised(ng-click='vm.cancel()') Cancel
