@@ -34,6 +34,11 @@ md-list {
   }
 }
 
+md-toast {
+  right: 0;
+  top: 0;
+}
+
 md-sidenav {
   md-list {
     padding: 0px 0px 8px 0px;

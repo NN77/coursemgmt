@@ -30,6 +30,11 @@ md-list .md-button.selected {
   color: #03a9f4;
 }
 
+md-toast {
+  right: 0;
+  top: 0;
+}
+
 md-sidenav md-list {
   padding: 0px 0px 8px 0px;
   min-height: 250px;

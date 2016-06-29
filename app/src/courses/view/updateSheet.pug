@@ -1,0 +1,11 @@
+md-bottom-sheet.md-list.md-has-header
+  md-subheader
+    | Edit
+    span.name {{ vm.course.title }}
+    | :
+  md-list
+    md-list-item.noright(ng-repeat='u in vm.course.candidates', ng-click='register(u, $event)')
+      md-icon.avatar.avatar_mini(md-svg-icon='{{u.avatar}}')
+      p {{ u.first_name }}
+      md-button.md-secondary(ng-click='vm.register(u.id)') Register
+      md-button.md-secondary(ng-click='vm.remove(u.id)') Remove
