@@ -5,12 +5,16 @@ var precss = require('precss');
 var cssnext = require('postcss-cssnext');
 var pug = require('gulp-pug');
 var runSequence = require('run-sequence');
+var traceur = require('gulp-traceur');
+var concat = require('gulp-concat');
 
 var cssSourceCode = './app/assets/app.css';
 var cssDest = './app';
 
 var pugSourceCode = './app/src/**/*.pug';
 var htmlDest = './app/src/';
+
+var jsSourceCode = ['!app/src/**/*.spec.js', '!app/dist', 'app/**/*.js'];
 
 gulp.task('build.css', function() {
   const PROCESSORS = [
@@ -31,6 +35,16 @@ gulp.task('build.html', function() {
       .pipe(gulp.dest(htmlDest));
 });
 
+// gulp.task('build.js', function () {
+//     return gulp.src(jsSourceCode, {base: './app'})
+//         .pipe(traceur({
+//             modules: 'amd',
+//             moduleName : true
+//         }))
+//         .pipe(concat('bundle.js'))
+//         .pipe(gulp.dest('app/dist'))
+// });
+
 gulp.task('watch.css', function() {
     gulp.watch(cssSourceCode, ['build.css']);
 });
@@ -38,6 +52,10 @@ gulp.task('watch.css', function() {
 gulp.task('watch.html', function() {
     gulp.watch(pugSourceCode, ['build.html']);
 });
+
+// gulp.task('watch.js', function() {
+//     gulp.watch(jsSourceCode, ['build.js']);
+// });
 
 gulp.task('start', shell.task([
   'live-server --open=app'

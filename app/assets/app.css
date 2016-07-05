@@ -6,6 +6,12 @@ html, body {
   padding: 0px;
 }
 
+[ng-view] {
+  display: flex;
+  flex: 1 100%;
+  padding-top: 64px;
+}
+
 .menu {
   background-color: transparent;
   border: none;
@@ -14,9 +20,13 @@ html, body {
   width: 36px;
 }
 
-md-toolbar h3 {
-  margin: auto;
-  font-weight: 500;
+md-toolbar {
+  position: fixed !important;
+  z-index: 61;
+  h3 {
+    margin: auto;
+    font-weight: 500;
+  }
 }
 
 md-list-item {
@@ -42,7 +52,7 @@ md-toast {
 md-sidenav {
   md-list {
     padding: 0px 0px 8px 0px;
-    min-height: 250px;
+    min-height: 275px;
   }
 }
 
